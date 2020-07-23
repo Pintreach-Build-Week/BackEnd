@@ -64,3 +64,23 @@ describe("login integration tests", () => {
     expect(res.statusCode).toBe(401);
   });
 });
+
+describe("GET users", () => {
+  it("lists all users", async () => {
+    const res = await supertest(server).get("/api/auth/users");
+
+    expect(res.statusCode).toBe(200);
+    expect(res.headers["content-type"]).toBe("application/json; charset=utf-8");
+    expect(res.body).toHaveLength(1);
+    expect(res.body[0].username).toBe("Darcy Lewis");
+  });
+
+  it("GET user by id", async () => {
+    const res = await supertest(server).get("/api/auth/users/1");
+
+    expect(res.statusCode).toBe(200);
+    expect(res.headers["content-type"]).toBe("application/json; charset=utf-8");
+    expect(res.body.id).toBe(1);
+    expect(res.body.username).toBe("Darcy Lewis");
+  });
+});

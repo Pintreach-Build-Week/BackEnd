@@ -9,7 +9,7 @@ const router = express.Router();
 // GET a list of all authorized users
 router.get("/users", async (req, res, next) => {
   try {
-    res.status(200).json(Users.find());
+    res.json(await Users.find());
   } catch (err) {
     next(err);
   }
@@ -18,7 +18,14 @@ router.get("/users", async (req, res, next) => {
 // GET authorized users by their id
 router.get("/users/:id", async (req, res, next) => {
   try {
-    res.status(200).json(await Users.findById(req.params.id));
+    const user = await Users.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({
+        message: "User not found",
+      });
+    }
+
+    res.json(user);
   } catch (err) {
     next(err);
   }
