@@ -1,8 +1,11 @@
-const server = require('./api/server.js');
 
-const PORT = process.env.PORT || 5000;
-server.listen(PORT, () => {
-  console.log(`\n=== Server listening on port ${PORT} ===\n`);
-});
+const server = require("./api/server"); //imports server.js
 
-module.exports = server
+const port = process.env.port || 4000;
+
+if (!module.parent) {
+  server.listen(port, () => {
+    console.log(`Server running at http://localhost: ${port}`);
+  });
+}
+
