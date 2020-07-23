@@ -25,19 +25,19 @@ router.get("/users/:id", async (req, res, next) => {
 });
 
 // this POST endpoint will allow you to register a new user
+
 router.post("/register", async (req, res, next) => {
+  // implement registration
   try {
     const { username, password } = req.body;
     const user = await Users.findBy({ username }).first();
 
-    // this checks if a username is already taken
     if (user) {
       return res.status(409).json({
         message: "Username is already taken",
       });
     }
 
-    // this creates a new user while encrypting the password for security
     const newUser = await Users.add({
       username,
       password: await bcrypt.hash(password, 14),
@@ -49,25 +49,27 @@ router.post("/register", async (req, res, next) => {
   }
 });
 
-// Allows a registered user to login and will provide a token to place
-// in the authorization header
 router.post("/login", async (req, res, next) => {
+  // implement login
   try {
     const { username, password } = req.body;
-    Users.findBy({ username }).then((user) => {
-      if (user && bcrypt.compare(password)) {
-        const token = getJWT(user.username);
 
-        res.status(200).json({
-          message: `Welcome ${user.username}! Here is a token...`,
-          token,
-        });
-      } else {
-        res.status(401).json({
-          message: "Invalid credentials",
-        });
-      }
-    });
+    Users.findBy({ username })
+      .first()
+      .then((user) => {
+        if (user && bcrypt.compare(password, user.password)) {
+          const token = getJWT(user.username);
+
+          res.status(200).json({
+            message: `Welcome ${user.username}! Here is a token...`,
+            token,
+          });
+        } else {
+          res.status(401).json({
+            message: "Invalid credentials",
+          });
+        }
+      });
   } catch (err) {
     next(err);
   }

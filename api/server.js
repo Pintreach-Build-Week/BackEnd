@@ -12,7 +12,7 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-server.use("api/auth", authRouter);
+server.use("/api/auth", authRouter);
 
 //This will be the first thing you see when accessing the deployed server
 server.get("/", (req, res) => {
