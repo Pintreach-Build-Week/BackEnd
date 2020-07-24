@@ -7,7 +7,7 @@ As a researcher, it's difficult to keep track of articles you want to read later
 ## Auth endpoints(Register/Login/GET users)
 
 # Register endpoint:
-- /api/auth/register (POST)
+- http://localhost:4000/api/auth/register (POST)
 
 - payload (body):
    ex: {
@@ -18,7 +18,7 @@ As a researcher, it's difficult to keep track of articles you want to read later
 - no text response/auth token
 
 # Login endpoint:
-- /api/auth/login (POST)
+- http://localhost:4000/api/auth/login (POST)
 
 - payload (body):
    ex: {
@@ -30,12 +30,12 @@ As a researcher, it's difficult to keep track of articles you want to read later
     'Welcome username! here is a token...' { auth token }
 
 # GET users endpoint
-- /api/auth/users (GET)
+- http://localhost:4000/api/auth/users (GET)
 
 - no payload (body)
 
 # GET users by id
-- /api/auth/users/:id (GET)
+- http://localhost:4000/api/auth/users/:id (GET)
 
 - payload (body): 
    ex: {
