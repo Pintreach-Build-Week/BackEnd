@@ -8,15 +8,15 @@ module.exports = {
 }
 
 function getArticles  () {
-    return db('recipes')
+    return db('articles')
 }
 
 function getArticle(id) {
-    return db("recipes").where({ id })
+    return db("articles").where({ id })
  }
  function addArticle(recipe) {
-    return db("recipes").insert(recipe)
+    return db("articles").insert(article)
  }
 function delArticle(id) {
-    return db("recipes").where("id", id).del()
+    return db("articles").where("id", id).del()
 }
