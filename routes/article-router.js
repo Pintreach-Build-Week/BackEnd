@@ -1,29 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const Articles = ("../article-model")
+const Articles = require("./article-model");
+const { orWhereNotExists } = require("../data/dbConfig");
 
-// routers go here
-
-//GET ALL ARTICLES  
-
-router.get("/articles", (req, res) => {
-    Articles.getArticles()
-    .then(articles => {
-        res.status(200).json(articles)
-    })
-    .catch(err => {
-        res.status(500).json({
-            message:
-              "An error occured while trying to get the articles from the database.",
-            error: err
-        })
-    })
-})
-
+// crud routers go here
 
 // ADD NEW ARTICLE
 
 router.post("/articles", (req, res) => {
+     
     const articleData = req.body
     Articles.addArticle(articleData)
     .then(newArticle => {
@@ -41,11 +26,45 @@ router.post("/articles", (req, res) => {
     })
 })
 
+//GET ALL ARTICLES  
+router.get("/", async (req, res, next) => {
+    try {
+        res.json(await Articles.getArticles());
 
-router.delete("/recipes/:id", (req, res) => {
+    } catch(err) {
+        next(err)
+    }
+
+})
+
+// UPDATE ARTICLE
+router.put('/:id', (req, res) => {
+    const article = req.body;
+    Articles.updateArticle(req.params.id, article)
+    .then( response => {
+        if(response === 0){
+            return res.status(500).json({ 
+                "Message" : "Can't update article at" + req.params.id
+            })
+        } else {
+            res.status(200).json({
+                "Message" : "Update Article Successful"
+            })
+        }
+    })
+    .catch(err => {
+        res.status(400).json({
+            "Message" : "Server, Error",
+            "Error" : err
+        })
+    })
+})
+
+
+router.delete("/:id", (req, res) => {
     const { id } = req.params
 
-    Recipes.delRecipe(id)
+    Articles.delArticle(id)
     .then (del => {
         res.status(204).end()
     })
@@ -53,6 +72,7 @@ router.delete("/recipes/:id", (req, res) => {
         console.log("Error", err)
     })
 })
+
 
 
 module.exports = router;
