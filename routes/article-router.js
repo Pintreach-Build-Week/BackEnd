@@ -1,13 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const Articles = require("./article-model");
-const { orWhereNotExists } = require("../data/dbConfig");
 
 // crud routers go here
 
 // ADD NEW ARTICLE
 
-router.post("/articles", (req, res) => {
+router.post("/post", (req, res) => {
      
     const articleData = req.body
     Articles.addArticle(articleData)
