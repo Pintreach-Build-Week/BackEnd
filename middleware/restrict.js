@@ -1,33 +1,24 @@
 const jwt = require("jsonwebtoken");
+const { jwtSecret } = require("../config/secret");
 
-const roles = ["user", "admin"];
+module.exports = (req, res, next) => {
+  const token = req.headers.authorization;
 
-function restrict(role) {
-  return async (req, res, next) => {
-    const authErr = {
-      message: "Invalid Credentials",
-    };
-
-    try {
-      const token = req.cookies.token;
-      if (!token) {
-        return res.status(401).json(authErr);
+  if (token) {
+    jwt.verify(token, jwtSecret, (err, decodedToken) => {
+      if (err) {
+        res
+          .status(401)
+          .json({
+            message:
+              "You are not authorized to be here...alerting the REAL authorities.",
+          });
+      } else {
+        req.user = decodedToken.user;
+        next();
       }
-
-      jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-        if (err) {
-          return res.status(401).json(authErr);
-        }
-
-        if (role && roles.indexOf(decoded.userRole) < roles.indexOf(role)) {
-          return res.status(401).json(authErr);
-        }
-      });
-
-      next();
-    } catch (err) {
-      next(err);
-    }
-  };
-}
-module.exports = restrict;
+    });
+  } else {
+    res.status(401).json({ how: "dare you try that at MY house. Just no." });
+  }
+};
