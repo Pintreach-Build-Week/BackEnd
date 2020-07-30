@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const Articles = require("./article-model");
+const restrict = require("../middleware/restrict");
 
 // crud routers go here
 
 // ADD NEW ARTICLE
 
-router.post("/", (req, res) => {
+router.post("/", restrict, (req, res) => {
      
     const articleData = req.body
     Articles.addArticle(articleData)
@@ -37,7 +38,7 @@ router.get("/", async (req, res, next) => {
 })
 
 // UPDATE ARTICLE
-router.put('/:id', (req, res) => {
+router.put('/:id', restrict, (req, res) => {
     const article = req.body;
     Articles.updateArticle(req.params.id, article)
     .then( response => {
@@ -60,7 +61,7 @@ router.put('/:id', (req, res) => {
 })
 
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", restrict, (req, res) => {
     const { id } = req.params
 
     Articles.delArticle(id)
