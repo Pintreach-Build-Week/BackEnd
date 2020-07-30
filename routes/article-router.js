@@ -6,7 +6,7 @@ const Articles = require("./article-model");
 
 // ADD NEW ARTICLE
 
-router.post("/post", (req, res) => {
+router.post("/", (req, res) => {
      
     const articleData = req.body
     Articles.addArticle(articleData)

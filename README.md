@@ -47,3 +47,25 @@ As a researcher, it's difficult to keep track of articles you want to read later
    ex: {
         id: 1
     }
+
+# POST New Article
+- /articles (POST)
+- example: POST localhost:4000/articles
+- payload ex: { article: "Article data goes here"}
+
+# GET All Articles
+- /articles (GET)
+- example: GET localhost:4000/articles
+
+# GET Article by ID
+- /articles/:id (GET)
+- example: GET localhost:4000/articles/1
+
+# PUT Update Article by ID
+- /articles/:id (PUT)
+- example: PUT localhost:4000/articles/1
+- payload ex: { article : "article updated" }
+
+# DELETE Article by ID
+- /articles/:id (DELETE)
+- example: DELETE localhost:4000/articles/1
