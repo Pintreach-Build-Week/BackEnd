@@ -49,12 +49,12 @@ As a researcher, it's difficult to keep track of articles you want to read later
     }
 
 # POST New Article
-- https://bw-pt-pintereach-1-ebi-backend.herokuapp.com/articles (POST)
+- https://bw-pt-pintereach-1-ebi-backend.herokuapp.com/articles/ (POST)
 - example: POST localhost:4000/articles
 - payload ex: { article: "Article data goes here"}
 
 # GET All Articles
-- https://bw-pt-pintereach-1-ebi-backend.herokuapp.com/articles (GET)
+- https://bw-pt-pintereach-1-ebi-backend.herokuapp.com/articles/ (GET)
 - example: GET localhost:4000/articles
 
 # GET Article by ID
