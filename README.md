@@ -51,7 +51,8 @@ As a researcher, it's difficult to keep track of articles you want to read later
 # POST New Article
 - https://bw-pt-pintereach-1-ebi-backend.herokuapp.com/articles/ (POST)
 - example: POST localhost:4000/articles
-- payload ex: { article: "Article data goes here"}
+- payload ex: {"tile": "title here...", "url": "url here...", "author": "author here...", 
+    "categories": "category here..., other category here...", "notes": "notes here..."}
 
 # GET All Articles
 - https://bw-pt-pintereach-1-ebi-backend.herokuapp.com/articles/ (GET)
@@ -64,7 +65,8 @@ As a researcher, it's difficult to keep track of articles you want to read later
 # PUT Update Article by ID
 - https://bw-pt-pintereach-1-ebi-backend.herokuapp.com/articles/:id (PUT)
 - example: PUT localhost:4000/articles/1
-- payload ex: { article : "article updated" }
+- payload ex: {"tile": "title here...", "url": "url here...", "author": "author here...", 
+    "categories": "category here..., other category here...", "notes": "notes here..."}
 
 # DELETE Article by ID
 - https://bw-pt-pintereach-1-ebi-backend.herokuapp.com/articles/:id (DELETE)
