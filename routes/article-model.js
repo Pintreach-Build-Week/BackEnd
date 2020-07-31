@@ -13,7 +13,7 @@ function getArticles() {
 }
 
 function getArticle(id) {
-    return db("articles").where({ id })
+    return db("articles").select("id", "title").where({ id }).first()
  }
  function addArticle(article) {
     return db("articles").insert(article)

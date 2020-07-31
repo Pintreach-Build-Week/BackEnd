@@ -37,6 +37,22 @@ router.get("/", async (req, res, next) => {
 
 })
 
+router.get("/:id", async (req, res, next) => {
+    try {
+        const articles = await Articles.getArticle(req.params.id)
+
+        if (!articles) {
+            return res.status(404).json({
+                message: "Article not found",
+              });
+        }
+
+        res.json(articles)
+    } catch (err) {
+        next(err)
+    }
+})
+
 // UPDATE ARTICLE
 router.put('/:id', restrict, (req, res) => {
     const article = req.body;
