@@ -6,6 +6,11 @@ exports.up = async function (knex) {
     articles.text("author").notNull();
     articles.text("categories").notNull();
     articles.text("notes").notNull();
+    articles.integer("user_ID")
+    .references("Id")
+    .inTable("users")
+    .onDelete("CASCADE")
+    .onUpdate("CASCADE")
   });
 };
 
@@ -16,6 +21,7 @@ exports.down = async function (knex) {
     table.dropColumn("author");
     table.dropColumn("categories");
     table.dropColumn("notes");
+    table.dropColumn("user_ID")
 
   });
 

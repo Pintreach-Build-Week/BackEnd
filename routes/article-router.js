@@ -53,6 +53,16 @@ router.get("/:id", async (req, res, next) => {
     }
 })
 
+router.get("/user/:id", async (req, res, next) => {
+    try {
+        const user = await Articles.getArticleByUser(req.params.id)
+
+        res.json(user)
+    } catch (err) {
+        next(err)
+    }
+})
+
 // UPDATE ARTICLE
 router.put('/:id', restrict, (req, res) => {
     const article = req.body;
