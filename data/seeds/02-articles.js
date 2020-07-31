@@ -11,7 +11,8 @@ exports.seed = async function(knex) {
       tech: 'tech',
       diy: 'diy'
     },
-    notes: "Notes go here",      
+    notes: "Notes go here",
+    user_ID: 1
     }
   ])
 };

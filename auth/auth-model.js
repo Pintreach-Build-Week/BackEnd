@@ -9,7 +9,7 @@ module.exports = {
 
 //find user
 function find() {
-  return db("users").select("id", "username");
+  return db("users").select("id", "username", "password");
 }
 
 //Will filter to find specific user
