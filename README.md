@@ -52,7 +52,7 @@ As a researcher, it's difficult to keep track of articles you want to read later
 - https://bw-pt-pintereach-1-ebi-backend.herokuapp.com/articles/ (POST)
 - example: POST localhost:4000/articles
 - payload ex: {"tile": "title here...", "url": "url here...", "author": "author here...", 
-    "categories": "category here..., other category here...", "notes": "notes here..."}
+    "categories": "category here..., other category here...", "notes": "notes here...", user_ID: "user ID her..."}
 
 # GET All Articles
 - https://bw-pt-pintereach-1-ebi-backend.herokuapp.com/articles/ (GET)
@@ -62,11 +62,15 @@ As a researcher, it's difficult to keep track of articles you want to read later
 - https://bw-pt-pintereach-1-ebi-backend.herokuapp.com/articles/:id (GET)
 - example: GET localhost:4000/articles/1
 
+# GET Article by user ID
+- https://bw-pt-pintereach-1-ebi-backend.herokuapp.com/articles/user/:id (GET)
+- example: GET localhost:4000/articles/user/1
+
 # PUT Update Article by ID
 - https://bw-pt-pintereach-1-ebi-backend.herokuapp.com/articles/:id (PUT)
 - example: PUT localhost:4000/articles/1
 - payload ex: {"tile": "title here...", "url": "url here...", "author": "author here...", 
-    "categories": "category here..., other category here...", "notes": "notes here..."}
+    "categories": "category here..., other category here...", "notes": "notes here...", user_ID: "user ID here..."}
 
 # DELETE Article by ID
 - https://bw-pt-pintereach-1-ebi-backend.herokuapp.com/articles/:id (DELETE)
